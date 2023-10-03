@@ -42,3 +42,6 @@
 - **User Feedback:** Feedback channels are established to collect user feedback, enabling continuous monitoring of chatbot performance and improvement.
 - **Iterative Development:** The project follows an iterative development approach, allowing for continuous refinement of the chatbot based on real user interactions and feedback.
 - **Performance Metrics:** Key performance metrics, such as response time and accuracy, are monitored and optimized to ensure a consistently high-quality user experience.
+
+
+## [Dataset Link](https://www.kaggle.com/datasets/grafstor/simple-dialogs-for-chatbot)
