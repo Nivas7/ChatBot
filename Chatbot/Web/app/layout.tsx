@@ -1,18 +1,8 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import { ClerkProvider } from '@clerk/nextjs'
-import { cn } from '@/lib/utils'
-import { ThemeProvider } from '@/components/providers/theme-provider'
+import '@/styles/globals.css'
 
-const font = Poppins({
-  subsets: ['latin'],
-  weight: '100'
-})
-
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Chatbot',
-  description: 'IBM Project',
+  description: 'IBM project for AI',
 }
 
 export default function RootLayout({
@@ -21,20 +11,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <ClerkProvider>
-        <body className={cn(font.className,
-        "bg-[#fff] dark:bg-gray-800")
-        }>
-          <ThemeProvider
-          attribute='class'
-          defaultTheme='dark'
-          enableSystem={false}
-          >
-            {children}
-          </ThemeProvider>
-        </body>
-      </ClerkProvider>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   )
 }
