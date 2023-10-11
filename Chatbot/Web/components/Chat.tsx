@@ -99,7 +99,7 @@ const Chat = (props: any) => {
   };
 
   return (
-    <div className="flex max-w-full flex-1 flex-col">
+    <div className="flex max-w-full flex-1 flex-col overflow-y-scroll">
       <div className="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1">
         <div className="flex-1 overflow-hidden">
           <div className="react-scroll-to-bottom--css-ikyem-79elbk h-full dark:bg-gray-800">
