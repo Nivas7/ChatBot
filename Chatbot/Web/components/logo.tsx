@@ -9,7 +9,7 @@ const LogoBox = () => {
         <div className="flex justify-between bg-gray-800 m-[2rem]">
             <Image src={logo}  className="w-[7rem] object-contain" alt="logo"/>
 
-            {session && <img src={profileImg} onClick={() => signOut()} alt="Profile" className="h-12 w-12 cursor-pointer mb-2 hover:opacity-50 rounded-[50%]" />}
+            {session && <img src={profileImg || ""} onClick={() => signOut()} alt="Profile" className="h-12 w-12 cursor-pointer mb-2 hover:opacity-50 rounded-[50%]" />}
         </div>
      );
 }
