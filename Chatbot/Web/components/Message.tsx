@@ -1,6 +1,6 @@
-import { SiOpenai } from "react-icons/si";
-import { HiUser } from "react-icons/hi";
-import { TbCursorText } from "react-icons/tb";
+import { HiUser } from "react-icons/hi";import { TbCursorText } from "react-icons/tb";
+import ChatIcon from "@/public/chat.png";
+import Image from "next/image";
 
 const Message = (props: any) => {
   const { message } = props;
@@ -17,11 +17,11 @@ const Message = (props: any) => {
       <div className="text-base gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl flex lg:px-0 m-auto w-full">
         <div className="flex flex-row gap-4 md:gap-6 md:max-w-2xl lg:max-w-xl xl:max-w-3xl p-4 md:py-6 lg:px-0 m-auto w-full">
           <div className="w-8 flex flex-col relative items-end">
-            <div className="relative h-7 w-7 p-1 rounded-sm text-white flex items-center justify-center bg-black/75 text-opacity-100r">
+            <div className="relative h-10 w-10 m-0 rounded-sm text-white flex items-center justify-center bg-white text-opacity-100r">
               {isUser ? (
-                <HiUser className="h-4 w-4 text-white" />
+                <HiUser className="h-4 w-4 text-black spinOff" />
               ) : (
-                <SiOpenai className="h-4 w-4 text-white" />
+                <Image src={ChatIcon}  alt="chat" className="text-white object-fill img-spin" />
               )}
             </div>
             <div className="text-xs flex items-center justify-center gap-1 absolute left-0 top-2 -ml-4 -translate-x-full group-hover:visible !invisible">

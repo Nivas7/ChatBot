@@ -2,9 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["links.papareact.com","i.postimg.cc"]
+    domains: ["links.papareact.com","ibb.co"]
   },
   
 }
+
+
 
 module.exports = nextConfig

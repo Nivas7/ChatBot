@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { FiSend } from "react-icons/fi";
-import { BsChevronDown } from "react-icons/bs";
 import useAutoResizeTextArea from "@/hooks/useAutoResizeTextArea";
 import Message from "./Message";
 import { DEFAULT_OPENAI_MODEL } from "@/utils/Constants";
 
 const Chat = (props: any) => {
-  const { toggleComponentVisibility } = props;
-
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showEmptyChat, setShowEmptyChat] = useState(true);
@@ -15,6 +12,7 @@ const Chat = (props: any) => {
   const [message, setMessage] = useState("");
   const textAreaRef = useAutoResizeTextArea();
   const bottomOfChatRef = useRef<HTMLDivElement>(null);
+  const [model, setModel] = useState("");
 
   const selectedModel = DEFAULT_OPENAI_MODEL;
 
@@ -31,6 +29,12 @@ const Chat = (props: any) => {
     }
   }, [conversation]);
 
+  useEffect(() => {
+    if (model === "") {
+      setModel("Click to Select Model!")
+    }
+  })
+
   const sendMessage = async (e: any) => {
     e.preventDefault();
 
@@ -39,6 +43,14 @@ const Chat = (props: any) => {
       setErrorMessage("Please enter a message.");
       return;
     } else {
+      setErrorMessage("");
+    }
+
+    if (model === "Click to Select Model!") {
+      setErrorMessage("Please Select Model!");
+      return;
+    }
+    else {
       setErrorMessage("");
     }
 
@@ -107,7 +119,7 @@ const Chat = (props: any) => {
               {!showEmptyChat && conversation.length > 0 ? (
                 <div className="flex flex-col items-center text-sm bg-gray-800">
                   <div className="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">
-                    Model: {selectedModel.name}
+                    Model: {model}
                   </div>
                   {conversation.map((message, index) => (
                     <Message key={index} message={message} />
@@ -120,8 +132,10 @@ const Chat = (props: any) => {
                 <div className="py-10 relative w-full flex flex-col h-full">
                   <div className="flex items-center justify-center gap-2">
                     <div className="relative w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
-                      <button
-                        className="relative flex w-full cursor-default flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:border-white/20 dark:bg-gray-800 sm:text-sm align-center"
+                      <button onClick={() => {
+                        model === "Default (GPT-3.5)" ? setModel("Carla - Basic") : setModel("Default (GPT-3.5)")
+                      }}
+                        className="relative flex w-full cursor-default flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:border-white/20 dark:bg-gray-800 sm:text-sm align-center outline-none"
                         id="headlessui-listbox-button-:r0:"
                         type="button"
                         aria-haspopup="true"
@@ -136,13 +150,10 @@ const Chat = (props: any) => {
                         >
                           Model
                         </label>
-                        <span className="inline-flex w-full truncate">
-                          <span className="flex h-6 items-center gap-1 truncate text-white">
-                            {selectedModel.name}
+                        <span className="inline-flex w-full truncate text-centerc justify-center pt-[20px]">
+                          <span className="flex h-6 items-center gap-1 truncate text-white text-base text-center">
+                            {model}
                           </span>
-                        </span>
-                        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-                          <BsChevronDown className="h-4 w-4 text-gray-400" />
                         </span>
                       </button>
                     </div>
@@ -175,16 +186,16 @@ const Chat = (props: any) => {
                   style={{
                     height: "24px",
                     maxHeight: "200px",
-                    overflowY: "hidden",
+                    overflowY: "hidden"
                   }}
                   // rows={1}
                   placeholder="Send a message..."
-                  className="m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent pl-2 md:pl-0"
+                  className="m-0 w-full resize-none border-0 bg-transparent outline-none  p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent pl-2 md:pl-0"
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={handleKeypress}
                 ></textarea>
                 <button
-                  disabled={isLoading || message?.length === 0}
+                  disabled={(isLoading || message?.length === 0)}
                   onClick={sendMessage}
                   className="absolute p-1 rounded-md bottom-1.5 md:bottom-2.5 bg-transparent disabled:bg-gray-500 right-1 md:right-2 disabled:opacity-40"
                 >
