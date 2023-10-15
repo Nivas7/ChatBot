@@ -41,7 +41,7 @@ const Message = (props: any) => {
               <div className="min-h-20 flex flex-col items-start gap-4 whitespace-pre-wrap break-words">
                 <div className="markdown prose w-full break-words dark:prose-invert dark">
                   {!isUser && text === null ? (
-                    <TbCursorText className="h-6 w-6 animate-pulse" />
+                    <TbCursorText className="h-6 w-6 animate-pulse mt-[8px]" />
                   ) : (
                     <p>{text}</p>
                   )}

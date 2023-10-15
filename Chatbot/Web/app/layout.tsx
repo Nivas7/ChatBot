@@ -32,11 +32,9 @@ export default async function RootLayout({
         {!session ? (
           <Login />
         ) : (
-          <div className="flex">
-            <div className="bg-gray-800 flex-1">
+            <div className="bg-gray-800  w-full h-screen flex flex-col flex-1">
               {children}
             </div>
-          </div>
         )}
       </SessionProvider>
       </body>

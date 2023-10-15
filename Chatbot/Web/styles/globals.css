@@ -16,6 +16,10 @@
   }
 }
 
+#__next {
+  height: 100vh;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
@@ -26,3 +30,32 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+
+.text-custom {
+  font-size: max(2rem,min(calc(0.89796rem + 3.0122vw), 3.5rem));
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.107;
+  max-width: 46rem;
+  margin-top: 15vw !important;
+  margin-bottom: 6rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border: 0 solid #e2e2e4;
+  text-align: center;
+}
+
+.react-scroll-to-bottom--css-uzqrz-79elbk {
+  position: relative;
+}
+
+.react-scroll-to-bottom--css-ikyem-1n7m0yu {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
