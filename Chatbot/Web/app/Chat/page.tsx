@@ -74,15 +74,26 @@ const Chat = (props: any) => {
         setMessage("");
         setShowEmptyChat(false);
     
+        // try {
+        //   const response = await fetch(`/api/openai`, {
+        //     method: "POST",
+        //     headers: {
+        //       "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
+        //       messages: [...conversation, { content: message, role: "user" }],
+        //       model: selectedModel,
+        //     }),
+        //   });
+
         try {
-          const response = await fetch(`/api/openai`, {
+          const response = await fetch("", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              messages: [...conversation, { content: message, role: "user" }],
-              model: selectedModel,
+              messages: { content: message}
             }),
           });
     
