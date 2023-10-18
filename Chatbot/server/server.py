@@ -27,6 +27,9 @@ def make_prediction():
         X = [exp]
         [prediction] = loaded_model.predict(X)
         result = prediction
-        return jsonify({"message": result})
+        data = {
+            "message": result
+        }
+        return jsonify(data)
 if __name__ == '__main__':
     app.run(  debug=True)
