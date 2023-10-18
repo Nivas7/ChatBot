@@ -34,9 +34,9 @@ To get started with the Chatbot Project, follow the instructions below:
 
 
  ```bash
-    git clone https://github.com/yourusername/chatbot-project.git
+    git clone https://github.com/Nivas7/Chatbot.git
 
-    cd chatbot
+    cd Chatbot/server
 
     pip install -r requirements.txt
  ```
