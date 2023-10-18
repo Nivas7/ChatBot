@@ -13,7 +13,7 @@ import string
 loaded_model = joblib.load('model.pkl')
 
 app = Flask(__name__, static_url_path='/')
-CORS(app, resources={r"/*": {"origins": "https://carla-chatbot.vercel.app/Chat"}})
+CORS(app, resources={r"/*": {"origins": ["http://localhost:5000", "https://carla-chatbot.vercel.app"]}})
 
 @app.route("/")
 def home():
