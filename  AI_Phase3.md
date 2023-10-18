@@ -44,9 +44,9 @@ The chatbot project was built using the following technologies:
 
 Below are screenshots of sample chatbot conversations to demonstrate its functionality:
 
-- ![Chatbot Conversation 1](screenshots/Screenshot1.png)
-- ![Chatbot Conversation 2](screenshots/Screenshot2.png)
-- ![Chatbot Conversation 3](screenshots/Screenshot3.png)
+- <img src="./screenshots//Screenshot1.png?raw=true" width="100%" height="100%" object-fit="cover" />
+- <img src="./screenshots//Screenshot2.png?raw=true" width="100%" height="100%" object-fit="cover" />
+-  <img src="./screenshots//Screenshot3.png?raw=true" width="100%" height="100%" object-fit="cover" />
 
 ## Feedback
 
