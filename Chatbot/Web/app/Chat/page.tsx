@@ -87,7 +87,7 @@ const Chat = (props: any) => {
         //   });
 
         try {
-          const response = await fetch("", {
+          const response = await fetch("https://api-carla.onrender.com/predict", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
