@@ -18,6 +18,7 @@ const Chat = (props: any) => {
     const bottomOfChatRef = useRef<HTMLDivElement>(null);
     const [model, setModel] = useState("");
     const selectedModel = DEFAULT_OPENAI_MODEL;
+    let API_URL; 
   
     const { data: session } = useSession();
   
@@ -73,27 +74,22 @@ const Chat = (props: any) => {
         // Clear the message & remove empty chat
         setMessage("");
         setShowEmptyChat(false);
-    
-        // try {
-        //   const response = await fetch(`/api/openai`, {
-        //     method: "POST",
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-        //       messages: [...conversation, { content: message, role: "user" }],
-        //       model: selectedModel,
-        //     }),
-        //   });
+        if(model === ""){
+          API_URL = `api/openai`
+        } else {
+          API_URL = "https://api-carla.onrender.com/predict"
+        }
 
+ 
         try {
-          const response = await fetch("https://api-carla.onrender.com/predict", {
+          const response = await fetch(API_URL, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              messages: { content: message}
+              messages: [...conversation, { content: message, role: "user" }],
+              model: selectedModel,
             }),
           });
     
@@ -118,7 +114,6 @@ const Chat = (props: any) => {
     
           setIsLoading(false);
         }
-
       };
     
       const handleKeypress = (e: any) => {
@@ -128,17 +123,15 @@ const Chat = (props: any) => {
           e.preventDefault();
         }
       };
-  
     return (
        <div className="w-full h-full relative">
-        <LogoBox />
         <div className="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1">
         <div className="flex-1 overflow-hidden">
-          <div className="react-scroll-to-bottom--css-ikyem-79elbk h-full dark:bg-gray-800">
+          <div className="react-scroll-to-bottom--css-ikyem-79elbk h-full bg-gray-800">
             <div className="react-scroll-to-bottom--css-ikyem-1n7m0yu">
               {!showEmptyChat && conversation.length > 0 ? (
                 <div className="flex flex-col items-center text-sm bg-gray-800">
-                  <div className="flex w-full items-center justify-center gap-1 border-b border-black/10 bg-gray-50 p-3 text-gray-500 dark:border-gray-900/50 dark:bg-gray-700 dark:text-gray-300">
+                  <div className="flex w-full items-center justify-center gap-1 border-b p-3  border-gray-900/50 bg-gray-700 text-gray-300">
                     Model: {model}
                   </div>
                   {conversation.map((message, index) => (
@@ -156,7 +149,7 @@ const Chat = (props: any) => {
                       onClick={() => {
                         model === "Default (GPT-3.5)" ? setModel("Carla - Basic") : setModel("Default (GPT-3.5)")
                       }}
-                        className="relative flex w-full cursor-default flex-col rounded-md border border-black/10 bg-white py-2 pl-3 pr-10 text-left focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 dark:border-white/20 dark:bg-gray-800 sm:text-sm align-center"
+                        className="relative flex w-full cursor-pointer flex-col rounded-md border py-2 pl-3 pr-10 text-left focus:border-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 border-white/20 bg-gray-800 sm:text-sm align-center"
                         id="headlessui-listbox-button-:r0:"
                         type="button"
                         aria-haspopup="true"
@@ -165,7 +158,7 @@ const Chat = (props: any) => {
                         aria-labelledby="headlessui-listbox-label-:r1: headlessui-listbox-button-:r0:"
                       >
                         <label
-                          className="block text-xs text-gray-700 dark:text-gray-500 text-center"
+                          className="block text-xs text-gray-500 text-center"
                           id="headlessui-listbox-label-:r1:"
                           data-headlessui-state=""
                         >
@@ -181,16 +174,16 @@ const Chat = (props: any) => {
                       </button>
                     </div>
                   </div>
-                  <h1 className="text-2xl sm:text-4xl font-semibold text-center text-gray-200 dark:text-gray-600 flex gap-2 items-center justify-center h-screen">
+                  <h1 className="text-2xl sm:text-4xl font-semibold text-center  text-gray-600 flex gap-2 items-center justify-center h-screen">
                   Carla
                   </h1>
                 </div>
               ) : null}
-              <div className="flex flex-col items-center text-sm dark:bg-gray-800"></div>
+              <div className="flex flex-col items-center text-sm bg-gray-800"></div>
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient pt-2">
+        <div className="absolute bottom-0 left-0 w-full border-t md:border-t-0 border-white/20  md:border-transparent md:bg-vert-light-gradient bg-gray-800 md:!bg-transparent md:bg-vert-dark-gradient pt-2">
           <form className="stretch mx-2 flex flex-row gap-3 last:mb-2 md:mx-4 md:last:mb-6 lg:mx-auto lg:max-w-2xl xl:max-w-3xl">
             <div className="relative flex flex-col h-full flex-1 items-stretch md:flex-col">
               {errorMessage ? (
@@ -200,14 +193,14 @@ const Chat = (props: any) => {
                   </div>
                 </div>
               ) : null}
-              <div className="flex flex-col w-full py-2 flex-grow md:py-3 md:pl-4 relative border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]">
+              <div className="flex flex-col w-full py-2 flex-grow md:py-3 md:pl-4 relative border   border-gray-900/50 text-white bg-gray-700 rounded-md  shadow-[0_0_15px_rgba(0,0,0,0.10)]">
                 <textarea
                   ref={textAreaRef}
                   value={message}
                   tabIndex={0}
                   data-id="root"
                   placeholder="Send a message..."
-                  className="h-[24px] max-h-[200px] overflow-y-hidden m-0 w-full resize-none border-0 bg-transparent p-0 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent pl-2 md:pl-0"
+                  className="h-[24px] max-h-[200px] overflow-y-hidden m-0 w-full resize-none border-0  p-0 pr-7 focus:ring-0 focus-visible:ring-0 bg-transparent pl-2 md:pl-0"
                   onChange={(e) => setMessage(e.target.value)}
                   onKeyDown={handleKeypress}
                 ></textarea>
@@ -221,7 +214,7 @@ const Chat = (props: any) => {
               </div>
             </div>
           </form>
-          <div className="px-3 pt-2 pb-3 text-center text-xs text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6">
+          <div className="px-3 pt-2 pb-3 text-center text-xs  text-white/50 md:px-4 md:pt-3 md:pb-6">
             <span>
               ChatGPT Clone may produce inaccurate information about people,
               places, or facts.

@@ -266,6 +266,16 @@ p {
 	margin-right: auto;
 	margin-bottom: 5dvh;
 }
+.intro {
+	overflow: hidden;
+	display: flex;
+	gap: 10px;
+}
+
+.magic-text {
+	overflow: hidden;
+	color: var(--purple);
+}
 
 @media screen and (max-width: 768px) {
 	.title h1 {
