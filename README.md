@@ -27,6 +27,7 @@ To get started with the Chatbot Project, follow the instructions below:
 
 ### Prerequisites
 
+- node.js
 - Python (>=3.6)
 - Dependencies listed in `requirements.txt`
 
@@ -36,11 +37,17 @@ To get started with the Chatbot Project, follow the instructions below:
  ```bash
     git clone https://github.com/Nivas7/Chatbot.git
 
-    cd Chatbot/server
+    cd Chatbot/Web
 
-    pip install -r requirements.txt
+    npm install
+
+    npm run dev 
  ```
+### Run server
 
+```bash
+cd Chatbot/server
+```
 ## Usage
 
 1. **Configuration:** Configure the chatbot's settings and integration points.
@@ -54,8 +61,8 @@ For more detailed usage instructions, refer to the project's documentation.
 
 - Python
 - Natural Language Processing (NLP) Libraries
-- Web Frameworks (for integration)
-- Secure APIs (for data exchange)
+- Web Frameworks [NEXT_JS] (for integration)
+- Secure APIs [OPEN_API] (for data exchange)
 - Version Control (Git)
 - Continuous Integration (CI/CD tools)
 
