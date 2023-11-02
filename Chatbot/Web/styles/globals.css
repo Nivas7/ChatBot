@@ -131,7 +131,7 @@ textarea:focus {
 	font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	overflow: scroll;
+	overflow: hidden;
 }
 .loader {
 	width: 100vw;
